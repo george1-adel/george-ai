@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cairo', sans-serif;
+        }
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 32px 28px 24px 28px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(30,60,114,0.15);
+            position: relative;
+            z-index: 2;
+        }
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 24px;
+            color: #1e3c72;
+            font-weight: 700;
+        }
+        .form-group {
+            margin-bottom: 18px;
+            position: relative;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #2a5298;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px 38px 10px 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 16px;
+            background: #f7fafd;
+            transition: border 0.2s;
+        }
+        .form-group input:focus {
+            border-color: #1e3c72;
+            outline: none;
+        }
+        .form-group .input-icon {
+            position: absolute;
+            right: 10px;
+            top: 36px;
+            color: #1e3c72;
+            font-size: 16px;
+        }
+        .btn {
+            background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 12px 0;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 8px;
+            box-shadow: 0 2px 8px rgba(30,60,114,0.08);
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background: linear-gradient(90deg, #2a5298 0%, #1e3c72 100%);
+        }
+        .flash-messages {
+            margin-bottom: 18px;
+        }
+        .flash-message {
+            padding: 10px;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+            color: #721c24;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .register-link {
+            text-align: center;
+            margin-top: 18px;
+            color: #1e3c72;
+        }
+        .register-link a {
+            color: #2a5298;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+        @media (max-width: 500px) {
+            .login-container {
+                padding: 18px 6px 12px 6px;
+                border-radius: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>تسجيل الدخول</h2>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                        <div class="flash-message">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        <form method="POST" action="{{ url_for('login') }}">
+            <div class="form-group">
+                <label for="username">اسم المستخدم:</label>
+                <input type="text" id="username" name="username" required autocomplete="username">
+                <span class="input-icon"><i class="fa fa-user"></i></span>
+            </div>
+            <div class="form-group">
+                <label for="password">كلمة المرور:</label>
+                <input type="password" id="password" name="password" required autocomplete="current-password">
+                <span class="input-icon"><i class="fa fa-lock"></i></span>
+            </div>
+            <button type="submit" class="btn">تسجيل الدخول</button>
+        </form>
+        <div class="register-link">
+            ليس لديك حساب؟ <a href="{{ url_for('register') }}">سجل الآن</a>
+        </div>
+    </div>
+</body>
+</html> 

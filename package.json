@@ -1,0 +1,17 @@
+{
+  "name": "ai-chat",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "AI Chat Assistant for Educational Technology Department",
+  "main": "main.js",
+  "scripts": {
+    "start": "http-server -c-1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1",
+    "replicate": "^0.25.2"
+  }
+}
